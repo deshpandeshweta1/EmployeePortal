@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="EmployeeApp">
+
+<head>
+  <title>Employee Details</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body ng-controller="EmpCtrl">
+  <header>
+    <h2>Company Name</h2>
+    <h4>Employee Info Portal</h4>
+
+
+    <!-- Tabbed menu for button click event -->
+    <nav>
+      <ul class="navBtn">
+        <li id="getEmp" ng-class="{active: tab == 1}"><a href="#" ng-click="getEmployees(); tab = 1">GetEmployees</a></li>
+        <li id="getSal" ng-class="{active: tab == 2}"><a href="#" ng-click="getSalary(); tab = 2">GetSalary</a></li>
+        <li id="getDetail" ng-class="{active: tab == 3}"><a href="#" ng-click="getEmployeeAndSalary(); tab = 3">GetEmployeeAndSalary</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <hr>
+
+    <!-- Tab1: GetEmployees table data is displayed here-->
+    <table ng-show="tab == 1">
+      <tr>
+        <th>EmployeeID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+
+      </tr>
+      <tr ng-repeat="emp in employee">
+        <td>{{emp.EmployeeID}}</td>
+        <td>{{emp.FirstName}}</td>
+        <td>{{emp.LastName}}</td>
+
+      </tr>
+    </table>
+
+    <!-- Tab2: GetSalary table data is displayed here -->
+    <table ng-show="tab == 2">
+      <tr>
+        <th>EmployeeID</th>
+        <th>Salary</th>
+
+      </tr>
+      <tr ng-repeat="sal in salary">
+        <td>{{sal.EmployeeID}}</td>
+        <td>${{sal.Salary}}</td>
+
+      </tr>
+    </table>
+
+    <!-- Tab3: GetEmployeeAndSalary table data is displayed here -->
+    <table ng-show="tab == 3">
+      <tr>
+        <th>EmployeeID</th>
+        <th>Full Name</th>
+        <th>Salary</th>
+
+      </tr>
+      <tr ng-repeat="data in empDetails">
+        <td>{{data.EmployeeID}}</td>
+        <!-- combined to show fullname -->
+        <td>{{data.FirstName +" "+ data.LastName}}</td>
+        <td>${{data.Salary}}</td>
+
+      </tr>
+    </table>
+  </section>
+  <footer></footer>
+</body>
+
+</html>
